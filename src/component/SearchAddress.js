@@ -11,6 +11,10 @@ const SearchAddress = () => {
     const region = useSelector(state => state.searchAddress.region)
     const district = useSelector(state => state.searchAddress.district)
 
+    const placeholderR = 'Регион'
+    const placeholderD = 'Район'
+    const nullQueryD = 'd[]'
+
     let queryR = region ? `r[${region}]`: ''
     let queryD = district ? `d[${district}]`:  ''
 
@@ -18,9 +22,21 @@ const SearchAddress = () => {
     console.log(query)
     return (
         <div style={{marginTop: 50, marginLeft: 100 }}>
-           <SearchInput address={itemRegion} value={region} query={query} action={setRegion} fetchAddress={fetchRegion}/>
+           <SearchInput address={itemRegion}
+                        value={region} query={query}
+                        action={setRegion}
+                        fetchAddress={fetchRegion}
+                        placeholder={placeholderR}
+           />
 
-           <SearchInput address={itemDistrict} value={district} query={query} action={setDistrict} fetchAddress={fetchDistrict}/>
+           <SearchInput address={itemDistrict}
+                        value={district}
+                        query={query}
+                        action={setDistrict}
+                        fetchAddress={fetchDistrict}
+                        placeholder={placeholderD}
+                        nullQuery={nullQueryD}
+           />
         </div>
     );
 };

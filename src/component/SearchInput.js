@@ -3,13 +3,16 @@ import s from '../Style/SearchInput.module.scss'
 import {useDispatch} from "react-redux";
 
 
-const SearchInput = ({address, value, query, action, fetchAddress}) => {
+const SearchInput = ({address, value, query, action, fetchAddress , placeholder, nullQuery}) => {
     const[isDropdown, setIsDropdown] =useState(false)
     const dispath = useDispatch()
 
     useEffect(()=>{
         dispath(fetchAddress(query))
         if(value)(setIsDropdown(true))
+        if(!value){
+            dispath(fetchAddress(query+nullQuery))
+        }
     },[value])
 
     const onChange = (e) => {
@@ -25,12 +28,20 @@ const SearchInput = ({address, value, query, action, fetchAddress}) => {
     }
     const onFocus = ()=> {
         setIsDropdown(true)
-        console.log(!!query)
+        console.log(nullQuery)
+        if(!value){
+            dispath(fetchAddress(query+nullQuery))
+        }
     }
 
     return (
         <div className={s.searchInput}>
-            <input onBlur={onBlur} onFocus={onFocus} className={s.input} value={value} onChange={onChange}/>
+            <input placeholder={placeholder}
+                   onBlur={onBlur}
+                   onFocus={onFocus}
+                   className={s.input}
+                   value={value}
+                   onChange={onChange}/>
             {isDropdown?
                 <div className={s.select}>
                 <ul className={s.selectMenu}>
