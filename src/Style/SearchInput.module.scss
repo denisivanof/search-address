@@ -1,0 +1,43 @@
+.searchInput{
+  margin-top: 10px;
+  position: relative;
+}
+.input{
+  height: 30px;
+  width: 300px;
+  background: #FFFFFF;
+  border: 1px solid black;
+  box-sizing: border-box;
+  border-radius: 4px;
+}
+.select{
+  margin-top: 10px;
+  position: absolute;
+  z-index: 1;
+}
+.selectMenu{
+  width: 300px;
+  list-style: none;
+  margin: 0;
+  padding-left: 0;
+
+  background: #FFFFFF;
+  border: 1px solid #E7E7E7;
+  box-sizing: border-box;
+  border-radius: 4px;
+  max-height: 600px;
+  overflow-y: auto;
+  box-shadow: 2px 3px 5px rgba(0,0,0,.2);
+}
+.selectMenu li{
+  padding-top: 5px;
+  padding-bottom: 5px;
+  font-size: 16px;
+  font-family: sans-serif;
+  padding-left: 30px;
+}
+.selectMenu li:hover{
+  background-color: #EEF1F5;
+  cursor: pointer;
+  transition: .15s background-color ease-in;
+}
