@@ -3,7 +3,7 @@ import s from '../Style/SearchInput.module.scss'
 import {useDispatch, useSelector} from "react-redux";
 import {setCity, setDistrict, setPlace, setRegion, setSite, setStreet} from "../store/reduce/searchAddressReducer";
 
-const SearchInput = ({address, value, query, action, fetchAddress, placeholder, nullQuery, code, typeInput}) => {
+const SearchInput = React.memo(({address, value, query, action, fetchAddress, placeholder, nullQuery, code, typeInput}) => {
 
     const [isDropdown, setIsDropdown] = useState(false)
     const [isFocus, setIsFocus] = useState(false)
@@ -12,7 +12,7 @@ const SearchInput = ({address, value, query, action, fetchAddress, placeholder, 
     const searchAddress = useSelector(state => state.searchAddress)
 
     useEffect(() => {
-        dispath(fetchAddress(query))
+        if(isFocus)(dispath(fetchAddress(query)))
         if (value && isFocus) (setIsDropdown(true))
         if (!value) {
             dispath(fetchAddress(query + nullQuery))
@@ -93,6 +93,6 @@ const SearchInput = ({address, value, query, action, fetchAddress, placeholder, 
 
         </div>
     );
-};
+});
 
 export default SearchInput;
